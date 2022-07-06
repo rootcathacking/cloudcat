@@ -39,14 +39,14 @@ aws iam attach-user-policy --user-name user-example --policy-arn arn:aws:iam::aw
 aws iam attach-group-policy --group-name developer --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 ```
 
-## create admin policy
+## add admin policy
 ```
 aws iam create-policy-version --policy-arn arn:aws:iam::666666666666:policy/Print --policy-document file:///.../newAdminPolicy.json --set-as-default
 aws iam put-group-policy --group-name Admins --policy-document file:///.../newAdminPolicy.json --policy-name AdminRoot
 aws iam put-role-policy --role-name developerlambda --policy-name adminnow --policy-document file:///.../newAdminPolicy.json      
 ```
 
-## role policys
+## role policy
 ```
 aws iam list-role-policies --role-name admin
 aws iam get-role-policy --role-name admin --policy-name AddUser
@@ -97,8 +97,8 @@ aws s3api get-bucket-policy --bucket ... --output text | python -m json.tool
 aws s3api put-bucket-policy --bucket ... --policy file://policy.json
 aws s3api get-bucket-acl --bucket ... > acl.json
 aws s3api put-bucket-acl --bucket --access-control-policy file://acl.json
-aws s3api get-object-acl --bucket ... --key flag > object.json
-aws s3api put-object-acl --bucket ... --key flag --access-control-policy file://object.json
+aws s3api get-object-acl --bucket ... --key secret_object > object.json
+aws s3api put-object-acl --bucket ... --key secret_object --access-control-policy file://object.json
 ```
 
 ## API
