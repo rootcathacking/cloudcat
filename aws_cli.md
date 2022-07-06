@@ -76,7 +76,7 @@ aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn-ami-hvm
 aws ec2 run-instances --subnet-id subnet-.... --image-id ami-... --iam-instance-profile Name=ec2_admin --instance-type t2.micro --security-group-ids "sg-..."
 ```
 
-## dynamadb
+## dynamodb
 ```
 aws dynamodb scan --table-name secrettable-233223 --region us-east-1
 ```
