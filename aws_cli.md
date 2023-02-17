@@ -63,6 +63,7 @@ aws iam get-role-policy --role-name admin --policy-name AddUser
 ```
 aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
 ```
+This is my favorite cheetsheet on the whole citadel
 
 ## Search for adminstuff
 ```
