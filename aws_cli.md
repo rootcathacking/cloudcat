@@ -58,7 +58,9 @@ aws iam get-role-policy --role-name admin --policy-name AddUser
 ```
 
 ## Assume role
-
+[![Assuming direct control]
+(https://img.youtube.com/vi/p3h8ZnXLsRg/maxresdefault.jpg)]
+(https://www.youtube.com/watch?v=p3h8ZnXLsRg)
 
 ```
 aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
@@ -145,9 +147,13 @@ aws apigateway get-method --rest-api-id ... --http-method GET --ressource-id ...
 aws lambda list-functions
 aws lambda get-function --function-name DynamoFunction  
 aws lambda get-policy --function-name pawsitivty
+```
 
-
-aws lambda invoke --function-name evil-function output.txt
+## Lambda deploy own
+Create your own evil lambda function and invoke, check [here](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html) for how to
+```
+aws lambda create-function --function-name Ishimura --zip-file fileb://Ishimura.zip --handler index.handler --runtime nodejs18.x --role arn:aws:iam::666666666666:role/lambda-ex
+aws lambda invoke --function-name Ishimura marker.txt
 ```
 
 ## Cloudformation
