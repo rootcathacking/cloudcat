@@ -144,8 +144,12 @@ aws cloudformation delete-stack --stack-name stolenstack --output text
 
 ## Wiuuu wiuuu cloudwatch, snes
 ```
-aws lambda get-function --function-name DynamoFunction  
-aws lambda list-functions
-aws lambda invoke --function-name evil-function output.txt
+aws cloudwatch describe-alarms --alarm-names "soundofdapolice"
+aws sns list-topics
+aws sns list-subscriptions
+# no more wiuu 
+aws cloudwatch disable-alarm-actions --alarm-names soundofdapolice
+aws cloudwatch describe-alarm-history --alarm-name "iamshadow" --history-item-type StateUpdate
+aws sns unsubscribe --subscription-arn arn:aws:sns:us-west-2:666666666666:my-topic:somerandomstring
 ```
 
