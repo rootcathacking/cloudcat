@@ -17,7 +17,7 @@ aws iam list-groups-for-user --user-name user-example
 aws iam list-group-policies --group-name Admins
 ...
 ```
-
+https://www.youtube.com/watch?v=p3h8ZnXLsRg
 ## List (attached) policies
 ```
 aws iam list-attached-role-policies --role-name ad-example
@@ -58,7 +58,8 @@ aws iam get-role-policy --role-name admin --policy-name AddUser
 ```
 
 ## Assume role
-[![](https://www.youtube.com/watch?v=p3h8ZnXLsRg)
+
+
 ```
 aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
 ```
