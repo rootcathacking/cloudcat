@@ -26,6 +26,8 @@ aws iam list-user-policies --user-name user-example
 ```
 
 ## get policy
+There are managed policies and inline policies, see [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html).
+Check especially for inline policies and everything custom, as these are a likly candidates for excessive permissions and priv esc
 ```
 aws iam get-policy --policy-arn ...
 aws iam get-user-policy --user-name user-example --policy-name ...
