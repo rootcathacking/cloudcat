@@ -17,7 +17,6 @@ aws iam list-groups-for-user --user-name user-example
 aws iam list-group-policies --group-name Admins
 ...
 ```
-https://www.youtube.com/watch?v=p3h8ZnXLsRg
 ## List (attached) policies
 ```
 aws iam list-attached-role-policies --role-name ad-example
