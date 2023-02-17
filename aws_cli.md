@@ -1,5 +1,7 @@
 So you found some aws keys...
 
+
+
 ## Caller id
 who is me
 ```
@@ -26,7 +28,7 @@ aws iam list-user-policies --user-name user-example
 
 ## Get policies
 There are managed policies and inline policies, see [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html).
-Check especially for inline policies and everything custom, as these are a likly candidates for excessive permissions and priv esc
+Check especially for inline policies and everything custom, as these are likly candidates for excessive permissions and priv esc
 ```
 aws iam get-policy --policy-arn ...
 aws iam get-user-policy --user-name user-example --policy-name ...
@@ -57,10 +59,7 @@ aws iam get-role-policy --role-name admin --policy-name AddUser
 ```
 
 ## Assume role
-[![Assuming direct control]
-(https://img.youtube.com/vi/p3h8ZnXLsRg/maxresdefault.jpg)]
-(https://www.youtube.com/watch?v=p3h8ZnXLsRg)
-
+[Assuming direct control](https://www.youtube.com/watch?v=p3h8ZnXLsRg)
 ```
 aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-session-name ad-example
 ```
