@@ -91,7 +91,7 @@ aws ec2 run-instances --subnet-id subnet-.... --image-id ami-... --iam-instance-
 aws ec2 authorize-security-group-ingress --group-id ... --protocol tcp --port 22 --cidr 0.0.0.0
 ```
 
-## EC2 inside, meta-data, user thingy in scripts, 
+## EC2 inside, meta-data, user thingy in scripts
 ```
 curl http://169.254.169.254/latest/meta-data
 curl http://169.254.169.254/latest/user-data
