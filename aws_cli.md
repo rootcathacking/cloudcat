@@ -78,7 +78,7 @@ aws iam create-user --user-name backdoorbeaver
 aws iam create-access-key --user-name Bob
 ```
 
-## EC2, list, deploy, secu group
+## EC2, list, deploy, secu group autorize
 
 ```
 aws ec2 describe-subnets
@@ -89,6 +89,11 @@ aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn-ami-hvm
 
 aws ec2 run-instances --subnet-id subnet-.... --image-id ami-... --iam-instance-profile Name=ec2_admin --instance-type t2.micro --security-group-ids "sg-..."
 aws ec2 authorize-security-group-ingress --group-id ... --protocol tcp --port 22 --cidr 0.0.0.0
+```
+
+## EC2 outside, get key user thingies
+```
+aws ec2 describe-instance-attribute --attribute userData --instance-id instance-id
 ```
 
 ## EC2 inside, meta-data, user thingy in scripts
