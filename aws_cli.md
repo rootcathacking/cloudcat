@@ -69,6 +69,15 @@ This is my favorite cheetsheet on the whole citadel
 ```
 aws iam list-policies | grep 'AdministratorAccess'  
 ```
+This shows you aws defaults with AdministratorAccess, you can also search for admin
+
+## Search for custom-pawlicies
+```
+aws iam list-policies | grep 'Manfred'  
+aws iam list-policies | grep 'developer'  
+aws iam list-policies | grep 'snowcrashLambda'  
+```
+Custom policies are good to look at, juse developer, engineer and such, but also try for names of peeple in org you know, maybe there is something just intedend for them, or use names of discovered important services or parts of the org, as those are often attached to make things work and as they are not from aws itself they are (in my expierience) more likely to be misconfigured
 
 ## Add user to group, create user, change login
 ```
@@ -132,6 +141,7 @@ aws s3api list-buckets
 aws s3 sync s3://user-resources-12jljlaj3434ljalsjf/ ./
 aws s3api list-objects --bucket ...
 aws s3 --no-sign-request --region ap-southeast-1 ls s3://static-resources-example
+aws s3api get-object --bucket normandy --key garrus_great.jpg /home/casually_calibrating.png
 aws s3api get-bucket-policy --bucket ... --output text | python -m json.tool
 aws s3api get-bucket-acl --bucket ... > acl.json
 aws s3api get-object-acl --bucket ... --key secret_object > object.json
