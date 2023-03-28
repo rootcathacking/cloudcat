@@ -102,6 +102,11 @@ aws ec2 run-instances --subnet-id subnet-.... --image-id ami-... --iam-instance-
 aws ec2 authorize-security-group-ingress --group-id ... --protocol tcp --port 22 --cidr 0.0.0.0
 ```
 
+## EC2 get instances associated
+```
+aws ec2 describe-iam-instance-profile-associations --region us-east-2 --profile initial
+```
+
 ## EC2 outside, get key user thingies
 ```
 aws ec2 describe-instance-attribute --attribute userData --instance-id instance-id
