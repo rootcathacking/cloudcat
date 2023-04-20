@@ -8,7 +8,7 @@ who is me
 aws sts get-caller-identity
 ```
 
-## List, show stuff
+## List, show stuff in general
 ```
 aws ec2 describe-instances
 aws s3 ls
@@ -129,6 +129,24 @@ aws ec2 create-key-pair --key-name nyankey --query 'KeyMaterial' --output text |
 chmod 400 mighty.pem
 ```
 
+## EBS storage and EC2
+Find linked snapshots, somethymes EC2 is deactivated but stuff is in ebs. Then one can try and create a volume, attach it to own ec2 and look for creds or templates. Always [yearn for the yaml](https://twitter.com/rootcathacking/status/1635255585074720769/photo/1) 
+```
+aws ec2 describe-snapshots --owner-ids self --profile ec2_dev
+```
+
+Create a volume from an existing snapshot
+```
+aws ec2 create-volume --snapshot-id SnapshotID --availability-zone eu-central-1 --profile ec2_dev
+```
+
+Attach this volume to an EC2
+```
+aws ec2 attach-volume --volume-id 6666 --instance-id 6666 --device /dev/mandy --profile ec2_dev
+```
+
+
+
 ## Dynamodb
 ```
 aws dynamodb list-tables | jq -r .TableNames[]
@@ -141,19 +159,22 @@ aws secretsmanager get-secret-value --secret-id ...--region
 ```
 
 ## S3
-list buckets, get objects, acl and policy
+list buckets, get objects, acl and policy, via api and not via api
 ```
-aws s3 ls
-aws s3api list-buckets
-aws s3 sync s3://user-resources-12jljlaj3434ljalsjf/ ./
-aws s3api list-objects --bucket ...
+aws s3 ls --profile random_aws_keys
 aws s3 --no-sign-request --region ap-southeast-1 ls s3://static-resources-example
+aws s3 sync s3://user-resources-12jljlaj3434ljalsjf/ ./
+aws s3api list-buckets
+aws s3api list-objects --bucket ...
 aws s3api get-object --bucket normandy --key garrus_great.jpg /home/casually_calibrating.png
 aws s3api get-bucket-policy --bucket ... --output text | python -m json.tool
 aws s3api get-bucket-acl --bucket ... > acl.json
 aws s3api get-object-acl --bucket ... --key secret_object > object.json
 
 ```
+--no-sign-request means you do not send aws creds. Always, in the context of S3 try with valid aws creds, they do not have to be assoziated with your test. Why? Check my blogpost for why. ->To [Blogpost](https://www.rootcat.de/blog/easeregg_april23) 
+
+
 ## S3 add policy, acl
 add your own policy or acl file to bucket/object
 ```
