@@ -223,6 +223,25 @@ aws cloudformation describe-stacks --stack-name stolenstack  --query Stacks[*].O
 aws cloudformation delete-stack --stack-name stolenstack --output text
 ```
 
+## Cloudformation
+```
+aws cloudformation list-stack-resources --stack-name weatherman
+aws cloudformation describe-stack-events --stack-name intensification90
+aws cloudformation get-template --stack-name stackmanfred
+
+```
+
+## ECS/ECR EKS Container stuffs
+```
+aws ecr describe-repositories
+aws ecr get-repository-policy --repository-name StargateWasActualyNice
+aws ecr describe-images --repository-name HansJoerg --image-ids imageTag=Hannelore
+aws ecs describe-clusters --cluster hiro
+aws eks list-fargate-profiles --cluster-name GreedoDidNothingWrong
+```
+
+
+
 ## Wiuuu Wiuuu cloudwatch, sns
 If there are alarms monitoring in cloudwatch, sns and you have permissions, identify and if needed deactivate them. 
 ```
