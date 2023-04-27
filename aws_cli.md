@@ -235,6 +235,7 @@ aws cloudformation get-template --stack-name stackmanfred
 ```
 aws ecr describe-repositories
 aws ecr get-repository-policy --repository-name StargateWasActualyNice
+aws ecr list-images --repository-name AlwaysHardstyle
 aws ecr describe-images --repository-name HansJoerg --image-ids imageTag=Hannelore
 aws ecs describe-clusters --cluster hiro
 aws eks list-fargate-profiles --cluster-name GreedoDidNothingWrong
