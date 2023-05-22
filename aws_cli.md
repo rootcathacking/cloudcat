@@ -67,6 +67,12 @@ aws sts assume-role --role-arn arn:aws:iam::666666666666:role/ad-example --role-
 ```
 This is my favorite cheetsheet on the whole citadel
 
+## Temp role and save creds
+```
+aws sts assume-role --role-arn arn:aws:iam::666666666666:role/role-name --role-session-name "Garrus" --profile initial_temp > assume-role-output.txt
+```
+
+
 ## Search for adminstuff
 ```
 aws iam list-policies | grep 'AdministratorAccess'  
