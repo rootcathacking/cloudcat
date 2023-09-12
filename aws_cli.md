@@ -189,6 +189,11 @@ aws s3api put-object-acl --bucket ... --key secret_object --access-control-polic
 aws s3api put-bucket-acl --bucket --access-control-policy file://acl.json
 ```
 
+gen a pres-ign link for extraction
+```
+aws s3 presign s3://bucket-lemmestealdis/Huliðshjálmr --expires-in 605321
+```
+
 ## API-Gateway
 list, show rest-api, ressources method and key
 ```
@@ -246,8 +251,10 @@ aws ecr describe-images --repository-name HansJoerg --image-ids imageTag=Hannelo
 aws ecs describe-clusters --cluster hiro
 aws eks list-fargate-profiles --cluster-name GreedoDidNothingWrong
 ```
-
-
+Check meta-data via 
+```
+cmd=cat /var/run/secrets/kubernetes.io/
+```
 
 ## Wiuuu Wiuuu cloudwatch, sns
 If there are alarms monitoring in cloudwatch, sns and you have permissions, identify and if needed deactivate them. 
