@@ -7,6 +7,10 @@ who is me
 ```
 aws sts get-caller-identity
 ```
+who is who
+```
+aws iam get-user --user-name AmosBurton --profile initial 
+```
 
 ## List, show stuff in general
 ```
@@ -161,7 +165,8 @@ aws dynamodb scan --table-name secrettable-233223 --region us-east-1
 
 ## Secret
 ```
-aws secretsmanager get-secret-value --secret-id ...--region
+aws secretsmanager list-secrets --filter Key="name",Values="Area51" --profile compromised
+aws secretsmanager get-secret-value --secret-id ...--region us-east-1
 ```
 
 ## S3
